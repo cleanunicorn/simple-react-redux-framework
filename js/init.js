@@ -5,7 +5,6 @@ import { Provider } from 'react-redux'
 import App from './Containers/App'
 import { createStore } from 'redux'
 import Reducer from './Reducers/'
-import { addTodo } from './Actions/'
 
 const store = createStore(Reducer)
 
