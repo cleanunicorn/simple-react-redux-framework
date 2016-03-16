@@ -7,16 +7,14 @@ const initialState = {
 export default function input(state = initialState, action) {
     switch (action.type) {
         case EMPTY_INPUT:
-            let {state} = state
-            state.value = ''
-
-            console.log(state)
-            return state
+            return { ...state,
+                value: ''
+            }
 
         case UPDATE_INPUT:
             return {
-                state,
-                value: action.text
+                ...state,
+                value: action.value
             }
 
         default:

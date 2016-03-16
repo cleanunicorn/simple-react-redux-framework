@@ -27,6 +27,13 @@ class App extends Component {
                     type="text"
                     ref="name"
                     value={state.input.value}
+                    onKeyPress={(e) => {
+                        console.log(e.charCode)
+                        if (e.charCode === 13) {
+                            store.dispatch(Actions.addTodo(e.target.value))
+                            store.dispatch(Actions.emptyInput())
+                        }
+                    }}
                     onChange={(e) => {
                         store.dispatch(Actions.updateInput(e.target.value))
                     }}
