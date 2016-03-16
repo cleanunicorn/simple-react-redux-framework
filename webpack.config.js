@@ -7,6 +7,7 @@ module.exports = {
     ],
     output: {
         filename: '[name].js',
+        path: './build/',
         publicPath: '/build/'
     },
     plugins: [],
