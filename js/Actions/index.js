@@ -6,3 +6,16 @@ export function addTodo(text) {
         text
     }
 }
+
+export function emptyInput() {
+    return {
+        type: types.EMPTY_INPUT
+    }
+}
+
+export function updateInput (text) {
+    return {
+        type: types.UPDATE_INPUT,
+        value: text
+    }
+}
