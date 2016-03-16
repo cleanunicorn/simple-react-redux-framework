@@ -10,7 +10,8 @@ import { addTodo } from './Actions/'
 const store = createStore(Reducer)
 
 render(
-    <App store={store} />
-    ,
+    <Provider store={store}>
+        <App />
+    </Provider>,
     document.getElementById('root')
 );

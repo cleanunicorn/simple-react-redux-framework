@@ -1,9 +1,17 @@
 const ADD_TODO = 'ADD_TODO'
-const initialState = [{
-    text: 'Goddamn',
-    completed: false,
-    id: 0
-}]
+const initialState = [
+    {
+        text: 'Goddamn',
+        completed: false,
+        id: 0
+    },
+    {
+        text: 'yo',
+        completed: true,
+        id: 1
+    }
+
+]
 
 export default function todos(state = initialState, action) {
     switch (action.type) {

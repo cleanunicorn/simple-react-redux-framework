@@ -79,7 +79,11 @@
 
 	var store = (0, _redux.createStore)(_Reducers2.default);
 
-	(0, _reactDom.render)(_react2.default.createElement(_App2.default, { store: store }), document.getElementById('root'));
+	(0, _reactDom.render)(_react2.default.createElement(
+	    _reactRedux.Provider,
+	    { store: store },
+	    _react2.default.createElement(_App2.default, null)
+	), document.getElementById('root'));
 
 /***/ },
 /* 2 */
@@ -28806,19 +28810,29 @@
 	var App = function (_Component) {
 	    _inherits(App, _Component);
 
-	    function App(props) {
+	    function App() {
 	        _classCallCheck(this, App);
 
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(App).call(this, props));
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(App).apply(this, arguments));
 	    }
 
 	    _createClass(App, [{
 	        key: 'render',
 	        value: function render() {
+	            var store = this.context.store;
+
+	            var state = store.getState();
+
 	            return _react2.default.createElement(
 	                'div',
 	                null,
-	                'hello'
+	                state.todos.map(function (todo) {
+	                    return _react2.default.createElement(
+	                        'div',
+	                        { key: todo.id },
+	                        todo.text
+	                    );
+	                })
 	            );
 	        }
 	    }]);
@@ -28826,7 +28840,9 @@
 	    return App;
 	}(_react.Component);
 
-	App.propTypes = {};
+	App.contextTypes = {
+	    store: _react2.default.PropTypes.object
+	};
 
 	exports.default = App;
 
@@ -28872,6 +28888,10 @@
 	    text: 'Goddamn',
 	    completed: false,
 	    id: 0
+	}, {
+	    text: 'yo',
+	    completed: true,
+	    id: 1
 	}];
 
 	function todos() {

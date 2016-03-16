@@ -3,20 +3,26 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 class App extends Component {
-    constructor (props) {
-        super(props);
-    }
-
     render () {
+        const { store } = this.context
+        const state = store.getState()
+
         return (
             <div>
-                hello
+                {state.todos.map(
+                    (todo) => {
+                        return (
+                            <div key={todo.id}>{todo.text}</div>
+                        )
+                    }
+                )}
             </div>
         )
     }
 }
 
-App.propTypes = {
+App.contextTypes = {
+    store: React.PropTypes.object
 }
 
 export default App
