@@ -1,11 +1,10 @@
 const ADD_TODO = 'ADD_TODO'
-const initialState = [
-    {
+const TOGGLE_TODO = 'TOGGLE_TODO'
+const initialState = [{
         text: 'Goddamn',
         completed: false,
         id: 0
-    },
-    {
+    }, {
         text: 'yo',
         completed: true,
         id: 1
@@ -23,6 +22,21 @@ export default function todos(state = initialState, action) {
                 },
                 ...state
             ]
+
+        case TOGGLE_TODO:
+            console.log(state)
+            return state.map(
+                (todo) => {
+                    if (todo.id === action.id) {
+                        return {
+                            ...todo,
+                            completed: !todo.completed
+                        }
+                    } else {
+                        return todo
+                    }
+                }
+            )
 
         default:
             return state

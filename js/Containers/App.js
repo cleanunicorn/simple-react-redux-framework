@@ -50,7 +50,15 @@ class App extends Component {
                     {state.todos.map(
                         (todo) => {
                             return (
-                                <li key={todo.id}>{todo.text}</li>
+                                <li
+                                    key={todo.id}
+                                    onClick={(e) => {
+                                        store.dispatch(Actions.toggleTodo(todo.id))
+                                    }}
+                                >
+                                    {todo.text} -
+                                    {todo.completed === true ? 'yes' : 'no'}
+                                </li>
                             )
                         }
                     )}

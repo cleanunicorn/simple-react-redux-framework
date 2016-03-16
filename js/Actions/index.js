@@ -19,3 +19,10 @@ export function updateInput (text) {
         value: text
     }
 }
+
+export function toggleTodo (todo) {
+    return {
+        type: types.TOGGLE_TODO,
+        id: todo 
+    }
+}
