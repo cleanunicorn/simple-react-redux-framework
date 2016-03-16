@@ -15,6 +15,17 @@ class App extends Component {
         this.unsubscribe()
     }
 
+    addNewTodo(text) {
+        const {store} = this.context;
+
+        if (text.trim() === '') {
+            return 
+        }
+
+        store.dispatch(Actions.addTodo(text));
+        store.dispatch(Actions.emptyInput());
+    }
+
     render() {
         const {store} = this.context
         const state = store.getState()
@@ -23,16 +34,14 @@ class App extends Component {
             <div>
                 <input type="text" ref="name" value={state.input.value} onKeyPress={(e) => {
                     if (e.charCode === 13) {
-                        store.dispatch(Actions.addTodo(e.target.value));
-                        store.dispatch(Actions.emptyInput());
+                        this.addNewTodo(e.target.value)
                     }
                 }} onChange={(e) => {
                     store.dispatch(Actions.updateInput(e.target.value));
                 }} placeholder="Input something"
                 />
                 <button onClick={(e) => {
-                    store.dispatch(Actions.addTodo(this.refs.name.value));
-                    store.dispatch(Actions.emptyInput());
+                    this.addNewTodo(this.refs.name.value)
                 }}>
                     Add todo
                 </button>
@@ -44,7 +53,7 @@ class App extends Component {
                                 store.dispatch(Actions.toggleTodo(todo.id))
                             }}>
                                 {todo.text}
-                                - {todo.completed === true
+                                -> {todo.completed === true
                                     ? 'yes'
                                     : 'no'}
                             </li>
