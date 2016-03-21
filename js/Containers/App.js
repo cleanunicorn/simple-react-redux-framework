@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import * as Actions from '../Actions'
+import { Link } from 'react-router'
 
 class App extends Component {
     componentDidMount() {
@@ -32,6 +33,13 @@ class App extends Component {
 
         return (
             <div>
+                <nav>
+                    <ul>
+                        <li><Link to="/">Home</Link></li>
+                        <li><Link to="/repos">Repo</Link></li>
+                    </ul>
+                </nav>
+
                 <input onClick={(e) => {
                         store.dispatch(Actions.updateInput(Math.random()));
                     }} />
