@@ -19,7 +19,7 @@ class App extends Component {
         const {store} = this.context;
 
         if (text.trim() === '') {
-            return 
+            return
         }
 
         store.dispatch(Actions.addTodo(text));
@@ -32,6 +32,9 @@ class App extends Component {
 
         return (
             <div>
+                <input onClick={(e) => {
+                        store.dispatch(Actions.updateInput(Math.random()));
+                    }} />
                 <input type="text" ref="name" value={state.input.value} onKeyPress={(e) => {
                     if (e.charCode === 13) {
                         this.addNewTodo(e.target.value)
